@@ -1,11 +1,17 @@
+#include <cstring>
+#include <fstream>
+using namespace std;
+
 class Book
 {
+public:
     char *author,*heading,*directory,*description,*isbn;
-    int rating
+    int rating;
+    bool loaded;
 
     void deleteDyn();
 
-public:
+
     Book();
     Book(const Book&);
     Book(Book&&);
@@ -13,5 +19,5 @@ public:
     Book& operator=(Book&&);
     ~Book();
 
-    bool load();
+    bool load(ifstream& str);
 };

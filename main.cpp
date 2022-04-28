@@ -42,6 +42,23 @@ void run()
 
 int main()
 {
-    run();
+   // run();
+    fstream f;
+    f.open("LibraryDataBase.dat", ios::binary | ios::out);
+    int t=5;
+    f.write((char*)&t,sizeof(int));
+    f.write("abcd",5);
+    f.close();
+
+    ifstream f2;
+
+   f2.open("LibraryDataBase.dat", ios::binary);
+
+    Book b;
+    cout<<b.load(f2)<< endl;
+    cout<<b.author<< endl;
+
+
+    f2.close();
     return 0;
 }
