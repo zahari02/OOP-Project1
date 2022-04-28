@@ -48,6 +48,17 @@ int main()
     int t=5;
     f.write((char*)&t,sizeof(int));
     f.write("abcd",5);
+    f.write((char*)&t,sizeof(int));
+    f.write("abcd",5);
+    f.write((char*)&t,sizeof(int));
+    f.write("abcd",5);
+    f.write((char*)&t,sizeof(int));
+    f.write("abcd",5);
+    f.write((char*)&t,sizeof(int));
+    f.write("abcd",5);
+    f.write((char*)&t,sizeof(int));
+
+
     f.close();
 
     ifstream f2;
@@ -57,6 +68,11 @@ int main()
     Book b;
     cout<<b.load(f2)<< endl;
     cout<<b.author<< endl;
+    cout<<b.heading<< endl;
+    cout<<b.directory<< endl;
+    cout<<b.description<< endl;
+    cout<<b.isbn<< endl;
+    cout<<b.rating<< endl;
 
 
     f2.close();
