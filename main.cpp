@@ -1,10 +1,41 @@
 #include <iostream>
 #include "Library.h"
+#include "PasswordManager.h"
 using namespace std;
 
+void clearCin()
+{
+    cin.clear();
+    while(cin.peek() != '\n')
+        cin.ignore();
+    cin.ignore();
+}
 
+void login(bool &admin, PasswordManager &mgr)
+{
+    char buff[20];
 
-int mainPage(bool &admin)
+    cout<<"\nWrite Password:\n";
+
+    cin.getline(buff,max_pass);
+    if(!cin)
+    {
+        cout<<"Error: Input too long\n\n";
+        clearCin();
+        return;
+    }
+    if(mgr.find(buff))
+    {
+        admin = true;
+        cout<<"Successful login!\n\n";
+    }
+    else
+    {
+        cout<<"Wrong Password\n\n";
+    }
+}
+
+int mainPage(bool &admin, Library &lib, PasswordManager &mgr)
 {
     if(admin)
         cout<<"----- Authorized access -----"<< endl;
@@ -26,55 +57,65 @@ int mainPage(bool &admin)
         cout<<"(4) Login"<< endl;
     }
 
-    char buff[100];
-    cin.getline(buff,90);
+    char buff[10];
+    cin.getline(buff,5);
+    if(!cin)
+    {
+        clearCin();
+        cout<<"Error: Command too long"<< endl<< endl;
+        return -1;
+    }
+    if(strlen(buff)!=1)
+    {
+        cout<<"Error: Invalid command"<< endl<<endl;
+        return -1;
+    }
+    char number = buff[0];
+    if(number<'0' || (number>'4' && admin == false) || number>'6')
+    {
+        cout<<"Error:Invalid command"<<endl<< endl;
+        return -1;
+    }
 
+    if(number=='4' && admin==false)
+        login(admin,mgr);
+}
+
+void loadLib(Library &lib)
+{
+
+}
+
+void loadMgr(PasswordManager &mgr)
+{
+    ifstream file("PasswordDatabase.txt");
+    if(!file)
+    {
+        cout<<"Error"<< endl;
+        return;
+    }
+    mgr.load(file);
+    file.close();
 }
 
 void run()
 {
     bool admin = false;
+
+    Library lib;
+
+
+    PasswordManager mgr;
+    loadMgr(mgr);
+
     while(1)
     {
-        mainPage(admin);
+        mainPage(admin,lib,mgr);
     }
 }
 
 int main()
 {
-   // run();
-    fstream f;
-    f.open("LibraryDataBase.dat", ios::binary | ios::out);
-    int t=5;
-    f.write((char*)&t,sizeof(int));
-    f.write("abcd",5);
-    f.write((char*)&t,sizeof(int));
-    f.write("abcd",5);
-    f.write((char*)&t,sizeof(int));
-    f.write("abcd",5);
-    f.write((char*)&t,sizeof(int));
-    f.write("abcd",5);
-    f.write((char*)&t,sizeof(int));
-    f.write("abcd",5);
-    f.write((char*)&t,sizeof(int));
-
-
-    f.close();
-
-    ifstream f2;
-
-   f2.open("LibraryDataBase.dat", ios::binary);
-
-    Book b;
-    cout<<b.load(f2)<< endl;
-    cout<<b.author<< endl;
-    cout<<b.heading<< endl;
-    cout<<b.directory<< endl;
-    cout<<b.description<< endl;
-    cout<<b.isbn<< endl;
-    cout<<b.rating<< endl;
-
-
-    f2.close();
+    run();
     return 0;
 }
