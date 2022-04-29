@@ -9,6 +9,8 @@ const int max_directory = 240;
 const int max_description = 10000;
 const int max_isbn = 15;
 
+void write_bintext(ofstream&f,const char*);
+
 class Book
 {
 public:
@@ -38,4 +40,5 @@ public:
 
     void print();
 
+    void save(ofstream&);
 };

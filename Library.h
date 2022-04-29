@@ -16,4 +16,6 @@ public:
     bool load(ifstream&);
     void add(const Book &);
     void print();
+
+    void save(ofstream&);
 };

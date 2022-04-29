@@ -47,3 +47,12 @@ void Library::print()
         cout<<endl;
     }
 }
+
+void Library::save(ofstream & str)
+{
+    if(book_amount==0)
+        return;
+    str.write((char*)&book_amount,sizeof(int));
+    for(int i=0; i<book_amount; i++)
+        list[i].save(str);
+}

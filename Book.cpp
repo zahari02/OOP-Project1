@@ -1,5 +1,12 @@
 #include "Book.h"
 
+void write_bintext(ofstream&file,const char*text)
+{
+    int temp = strlen(text)+1;
+    file.write( (char*)&temp,sizeof(int) );
+    file.write(text,strlen(text)+1);
+}
+
 void Book::deleteDyn()
 {
     delete[] author;
@@ -58,6 +65,8 @@ Book::Book(Book&& other)
     isbn = other.isbn;
     rating = other.rating;
     loaded = true;
+
+    other.author = other.heading = other.directory = other.description = other.heading = other.isbn = nullptr;
 }
 
 Book& Book::operator=(const Book& other)
@@ -107,6 +116,8 @@ Book& Book::operator=(Book&& other)
     isbn = other.isbn;
     rating = other.rating;
     loaded = true;
+
+    other.author = other.heading = other.directory = other.description = other.heading = other.isbn = nullptr;
 
     return *this;
 }
@@ -219,4 +230,14 @@ void Book::print()
     cout<<"Directory: "<<directory<<endl;
     cout<<"ISBN: "<<isbn<<endl;
     cout<<"rating: "<<rating<<endl;
+}
+
+void Book::save(ofstream& file)
+{
+    write_bintext(file,author);
+    write_bintext(file,heading);
+    write_bintext(file,directory);
+    write_bintext(file,description);
+    write_bintext(file,isbn);
+    file.write((char*)&rating,sizeof(int));
 }

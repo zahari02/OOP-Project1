@@ -11,6 +11,18 @@ void clearCin()
     cin.ignore();
 }
 
+void saveLib(Library& lib)
+{
+    ofstream file("LibraryDatabase.dat",ios::binary);
+    if(!file)
+    {
+        cout<<"Error Saving"<< endl;
+        return;
+    }
+    lib.save(file);
+    file.close();
+}
+
 void login(bool &admin, PasswordManager &mgr)
 {
     char buff[20];
@@ -114,7 +126,7 @@ int mainPage(bool &admin, Library &lib, PasswordManager &mgr)
     else
         cout<<"----- Unauthorized access -----"<< endl;
     cout<<"Enter number to choose command: "<< endl;
-    cout<<"(0) Exit"<< endl;
+    cout<<"(0) Exit and Save"<< endl;
     cout<<"(1) Print sorted list"<< endl;
     cout<<"(2) Find book"<< endl;
     cout<<"(3) Print book content"<< endl;
@@ -131,7 +143,7 @@ int mainPage(bool &admin, Library &lib, PasswordManager &mgr)
 
     char buff[10];
     cin.getline(buff,5);
-
+    // command correctness
     if(!cin)
     {
         clearCin();
@@ -150,22 +162,34 @@ int mainPage(bool &admin, Library &lib, PasswordManager &mgr)
         cout<<"Error:Invalid command"<<endl<< endl;
         return -1;
     }
-
+    //       command logic
     if(number == '0')
+    {
+        saveLib(lib);
         return 0;
+    }
 
-    if(number == '3')
+    if(number == '1')
+    {
         lib.print();
+        return 1;
+    }
 
     if(admin)
     {
         if(number=='4')
+        {
             addBook(lib);
+            return 4;
+        }
     }
     else
     {
         if(number=='4')
+        {
             login(admin,mgr);
+            return 4;
+        }
     }
     return -1;
 }
