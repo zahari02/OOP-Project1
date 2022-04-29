@@ -118,7 +118,8 @@ Book::~Book()
 
 bool Book::load(ifstream &str)
 {
-    deleteDyn();
+    if(loaded==true)
+        return false;
     int size;
 
     if(! str.read( (char*)&size , sizeof(int) ) )
@@ -158,4 +159,64 @@ bool Book::load(ifstream &str)
 
     loaded = true;
     return true;
+}
+
+void Book::setAuthor(const char * text)
+{
+    char *&field = author;
+    delete[] field;
+    field = new char[ strlen(text)+1 ];
+    strcpy( field,text );
+}
+
+void Book::setHeading(const char * text)
+{
+    char *&field = heading;
+    delete[] field;
+    field = new char[ strlen(text)+1 ];
+    strcpy( field,text );
+}
+
+void Book::setDirectory(const char * text)
+{
+    char *&field = directory;
+    delete[] field;
+    field = new char[ strlen(text)+1 ];
+    strcpy( field,text );
+}
+
+void Book::setDescription(const char * text)
+{
+    char *&field = description;
+    delete[] field;
+    field = new char[ strlen(text)+1 ];
+    strcpy( field,text );
+}
+
+void Book::setIsbn(const char * text)
+{
+    char *&field = isbn;
+    delete[] field;
+    field = new char[ strlen(text)+1 ];
+    strcpy( field,text );
+}
+
+void Book::setRating(int rating)
+{
+    this->rating = rating;
+}
+
+void Book::setLoaded(bool loaded)
+{
+    this->loaded = loaded;
+}
+
+void Book::print()
+{
+    cout<<"Title: "<<heading<<endl;
+    cout<<"Author: "<<author<<endl;
+    cout<<"Description: "<<description<<endl;
+    cout<<"Directory: "<<directory<<endl;
+    cout<<"ISBN: "<<isbn<<endl;
+    cout<<"rating: "<<rating<<endl;
 }

@@ -1,6 +1,13 @@
 #include <cstring>
 #include <fstream>
+#include <iostream>
 using namespace std;
+
+const int max_author = 100;
+const int max_heading = 100;
+const int max_directory = 240;
+const int max_description = 10000;
+const int max_isbn = 15;
 
 class Book
 {
@@ -20,4 +27,15 @@ public:
     ~Book();
 
     bool load(ifstream& str);
+
+    void setAuthor(const char *);
+    void setHeading(const char *);
+    void setDirectory(const char *);
+    void setDescription(const char *);
+    void setIsbn(const char *);
+    void setRating(int);
+    void setLoaded(bool loaded);
+
+    void print();
+
 };
