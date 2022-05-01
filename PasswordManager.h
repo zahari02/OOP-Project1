@@ -18,5 +18,5 @@ public:
 
     bool load(ifstream&);
     bool find(const char *);
-    bool write(ofstream&);
+    bool save(ofstream&);
 };

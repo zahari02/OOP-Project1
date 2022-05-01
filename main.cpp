@@ -199,10 +199,19 @@ void loadLib(Library &lib)
     ifstream file("LibraryDatabase.dat", ios::binary);
     if(!file)
     {
-        cout<<"No libdatabase"<< endl;
-        return;
+        ofstream ofile("LibraryDatabase.dat", ios::binary);
+        int temp=0;
+        ofile.write((char*)&temp,sizeof(int));
+        ofile.close();
+
+        file.open("LibraryDatabase.dat", ios::binary);
+//        cout<<"No libdatabase"<< endl;
+//        return;
     }
-    lib.load(file);
+    bool res = lib.load(file);
+    if(res==false)
+        cout<<"Error loading LibraryDatabase.dat"<< endl;
+    file.close();
 }
 
 void loadMgr(PasswordManager &mgr)
@@ -210,10 +219,15 @@ void loadMgr(PasswordManager &mgr)
     ifstream file("PasswordDatabase.txt");
     if(!file)
     {
-        cout<<"Error"<< endl;
-        return;
+        ofstream ofile("PasswordDatabase.txt");
+        ofile<<"1\nadmin\n";
+        ofile.close();
+
+        file.open("PasswordDatabase.txt");
     }
-    mgr.load(file);
+    bool res = mgr.load(file);
+    if(res == false)
+        cout<<"Error loading PasswordDatabase.txt"<< endl;
     file.close();
 }
 
@@ -239,5 +253,10 @@ void run()
 int main()
 {
     run();
+//    ofstream f;
+//    char buff[50];
+//    cin.getline(buff,30);
+//    f.open(buff);
+//    f.close();
     return 0;
 }

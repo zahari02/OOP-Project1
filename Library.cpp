@@ -22,7 +22,11 @@ bool Library::load(ifstream& str)
 
     list = new Book[book_amount];
     for(int i=0; i<book_amount; i++)
-        list[i].load(str);
+    {
+        bool res = list[i].load(str);
+        if(res==false) return false;
+    }
+    return true;
 }
 
 void Library::add(const Book & book)
@@ -50,8 +54,8 @@ void Library::print()
 
 void Library::save(ofstream & str)
 {
-    if(book_amount==0)
-        return;
+//    if(book_amount==0)
+//        return;
     str.write((char*)&book_amount,sizeof(int));
     for(int i=0; i<book_amount; i++)
         list[i].save(str);
