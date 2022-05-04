@@ -15,7 +15,8 @@ public:
 
     bool load(ifstream&);
     void add(const Book &);
-    void print();
+    bool findBook(Book&,const char*,SearchMode,bool ignore);
+    void simplePrint();
 
     void save(ofstream&);
 };

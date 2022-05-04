@@ -42,9 +42,21 @@ void Library::add(const Book & book)
     list = temp;
 }
 
-void Library::print()
+bool Library::findBook(Book& result,const char* str,SearchMode mode, bool ignore)
 {
-    cout<<"Book amount: "<<book_amount<< endl;
+    for(int i=0; i<book_amount; i++)
+        if(list[i].compBook(str,mode,ignore))
+        {
+            result = list[i];
+            return true;
+        }
+    return false;
+}
+
+
+void Library::simplePrint()
+{
+    cout<<"Book amount: "<<book_amount<< endl<<endl;
     for(int i=0; i<book_amount; i++)
     {
         list[i].print();

@@ -3,6 +3,9 @@
 #include "PasswordManager.h"
 using namespace std;
 
+const char * const lib_dir = "LibraryDatabase.dat";
+const char * const pass_dir = "PasswordDatabase.txt";
+
 void clearCin()
 {
     cin.clear();
@@ -13,7 +16,7 @@ void clearCin()
 
 void saveLib(Library& lib)
 {
-    ofstream file("LibraryDatabase.dat",ios::binary);
+    ofstream file(lib_dir,ios::binary);
     if(!file)
     {
         cout<<"Error Saving"<< endl;
@@ -21,6 +24,32 @@ void saveLib(Library& lib)
     }
     lib.save(file);
     file.close();
+}
+
+void findBook(Library& lib)
+{
+    char buff[max_description+10];
+    cout<<"Write one of the following: title, author, ISBN, part of description."<< endl;
+    cin.getline(buff,max_description);
+    if(!cin)
+    {
+        clearCin();
+        cout<<"Input too long"<< endl;
+        return;
+    }
+
+    Book res;
+    if(!lib.findBook(res,buff,title_m,true))
+        if(!lib.findBook(res,buff,author_m,true))
+            if(!lib.findBook(res,buff,isbn_m,true))
+                if(!lib.findBook(res,buff,description_m,true))
+                {
+                    cout<<"Book not found.\n\n";
+                    return;
+                }
+    cout<<"Book found!\n\n";
+    res.print();
+    cout<<endl;
 }
 
 void login(bool &admin, PasswordManager &mgr)
@@ -171,8 +200,14 @@ int mainPage(bool &admin, Library &lib, PasswordManager &mgr)
 
     if(number == '1')
     {
-        lib.print();
+        lib.simplePrint();
         return 1;
+    }
+
+    if(number == '2')
+    {
+        findBook(lib);
+        return 2;
     }
 
     if(admin)
@@ -194,40 +229,41 @@ int mainPage(bool &admin, Library &lib, PasswordManager &mgr)
     return -1;
 }
 
+
 void loadLib(Library &lib)
 {
-    ifstream file("LibraryDatabase.dat", ios::binary);
+    ifstream file(lib_dir, ios::binary);
     if(!file)
     {
-        ofstream ofile("LibraryDatabase.dat", ios::binary);
+        ofstream ofile(lib_dir, ios::binary);
         int temp=0;
         ofile.write((char*)&temp,sizeof(int));
         ofile.close();
 
-        file.open("LibraryDatabase.dat", ios::binary);
+        file.open(lib_dir, ios::binary);
 //        cout<<"No libdatabase"<< endl;
 //        return;
     }
     bool res = lib.load(file);
     if(res==false)
-        cout<<"Error loading LibraryDatabase.dat"<< endl;
+        cout<<"Error loading Library Database"<< endl;
     file.close();
 }
 
 void loadMgr(PasswordManager &mgr)
 {
-    ifstream file("PasswordDatabase.txt");
+    ifstream file(pass_dir);
     if(!file)
     {
-        ofstream ofile("PasswordDatabase.txt");
+        ofstream ofile(pass_dir);
         ofile<<"1\nadmin\n";
         ofile.close();
 
-        file.open("PasswordDatabase.txt");
+        file.open(pass_dir);
     }
     bool res = mgr.load(file);
     if(res == false)
-        cout<<"Error loading PasswordDatabase.txt"<< endl;
+        cout<<"Error loading Password Database"<< endl;
     file.close();
 }
 

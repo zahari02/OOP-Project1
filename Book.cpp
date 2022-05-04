@@ -7,6 +7,25 @@ void write_bintext(ofstream&file,const char*text)
     file.write(text,strlen(text)+1);
 }
 
+bool str_eq(const char* str1, const char*str2, bool ignore)
+{
+    if(strlen(str1) != strlen(str2))
+        return false;
+    int n = strlen(str1);
+    for(int i=0; i<n; i++)
+    {
+        if(ignore)
+        {
+            if(tolower(str1[i]) != tolower(str2[i]))
+                return false;
+        }
+        else
+            if(str1[i] != str2[i])
+                return false;
+    }
+    return true;
+}
+
 void Book::deleteDyn()
 {
     delete[] author;
@@ -220,6 +239,34 @@ void Book::setRating(int rating)
 void Book::setLoaded(bool loaded)
 {
     this->loaded = loaded;
+}
+
+bool Book::compBook(const char* str,SearchMode mode,bool ignore)
+{
+    if(mode == title_m)
+        return str_eq(str,heading,ignore);
+    if(mode == author_m)
+        return str_eq(str,author,ignore);
+    if(mode == isbn_m)
+        return str_eq(str,isbn,ignore);
+    if(mode == description_m)
+    {
+        int n = strlen(description);
+        int m = strlen(str);
+        char * buff = new char[m+1];
+        for(int i=0; i<=n-m; i++)
+        {
+            strncpy(buff,description+i,m);
+            buff[m]='\0';
+            if( str_eq(str,buff,ignore) )
+            {
+                delete[] buff;
+                return true;
+            }
+        }
+        delete[] buff;
+    }
+    return false;
 }
 
 void Book::print()

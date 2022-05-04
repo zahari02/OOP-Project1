@@ -11,6 +11,10 @@ const int max_isbn = 15;
 
 void write_bintext(ofstream&f,const char*);
 
+enum SearchMode{title_m,author_m,isbn_m,description_m};
+
+bool str_eq(const char*,const char*,bool ignore = false);
+
 class Book
 {
 public:
@@ -38,6 +42,8 @@ public:
     void setRating(int);
     void setLoaded(bool loaded);
 
+
+    bool compBook(const char*,SearchMode,bool ignore);
     void print();
 
     void save(ofstream&);
