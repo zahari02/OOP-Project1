@@ -13,6 +13,10 @@ void write_bintext(ofstream&f,const char*);
 
 enum SearchMode{title_m,author_m,isbn_m,description_m};
 
+enum SortMode{title_s,author_s,rating_s};
+
+enum PrintMode{sent_mode,row_mode};
+
 bool str_eq(const char*,const char*,bool ignore = false);
 
 class Book
@@ -44,7 +48,10 @@ public:
 
 
     bool compBook(const char*,SearchMode,bool ignore);
+    bool lessThan(const Book&,SortMode);
     void print();
+    void shortPrint();
+    bool getFile(ifstream&);
 
     void save(ofstream&);
 };

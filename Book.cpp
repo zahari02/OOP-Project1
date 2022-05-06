@@ -269,6 +269,17 @@ bool Book::compBook(const char* str,SearchMode mode,bool ignore)
     return false;
 }
 
+bool Book::lessThan(const Book& book,SortMode mode)
+{
+    if(mode == title_s)
+        return strcmp(heading, book.heading) < 0;
+    if(mode == author_s)
+        return strcmp(author, book.author) < 0;
+    if(mode == rating_s)
+        return rating < book.rating;
+    return 0;
+}
+
 void Book::print()
 {
     cout<<"Title: "<<heading<<endl;
@@ -278,6 +289,22 @@ void Book::print()
     cout<<"ISBN: "<<isbn<<endl;
     cout<<"rating: "<<rating<<endl;
 }
+
+void Book::shortPrint()
+{
+    cout<<"Title: "<<heading<<endl;
+    cout<<"Author: "<<author<<endl;
+    cout<<"ISBN: "<<isbn<<endl;
+}
+
+bool Book::getFile(ifstream &file)
+{
+    file.open(directory);
+    if(!file)
+        return false;
+    return true;
+}
+
 
 void Book::save(ofstream& file)
 {
