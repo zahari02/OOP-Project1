@@ -43,10 +43,22 @@ void saveLib(Library& lib)
     ofstream file(lib_dir,ios::binary);
     if(!file)
     {
-        cout<<"Error Saving"<< endl;
+        cout<<"Error Saving Library"<< endl;
         return;
     }
     lib.save(file);
+    file.close();
+}
+
+void savePass(PasswordManager &mgr)
+{
+    ofstream file(pass_dir);
+    if(!file)
+    {
+        cout<<"Error Saving Passwords"<< endl;
+        return;
+    }
+    mgr.save(file);
     file.close();
 }
 
@@ -255,7 +267,6 @@ void addBook(Library &lib)
 void removeBook(Library &lib)
 {
     char buff[max_heading+5],buff2[5];
-    bool del_content = false;
 
     cout<<"Write book title\n";
     cin.getline(buff,max_heading);
@@ -273,9 +284,25 @@ void removeBook(Library &lib)
     if(!checkCommand(buff2,'1','2'))
         return;
 
-    del_content = (buff2[0] - '1');
-    lib.delBook(buff,del_content);
+    if(buff2[0] == '2')
+        if( !book.delFile() )
+            cout<<"Error deleting book content.\n";
+        else
+            cout<<"File deleted successfully.\n";
+
+    lib.delBook(buff);
     cout<<"Book deleted successfully\n\n";
+}
+
+void addUser(PasswordManager &mgr)
+{
+    char buff[max_pass+5];
+    cout<<"Write new password:\n";
+    cin.getline(buff,max_pass);
+    if(!checkCin())
+        return;
+    mgr.addPass(buff);
+    cout<<"New password added.\n\n";
 }
 
 int mainPage(bool &admin, Library &lib, PasswordManager &mgr)
@@ -322,6 +349,7 @@ int mainPage(bool &admin, Library &lib, PasswordManager &mgr)
     if(number == '0')
     {
         saveLib(lib);
+        savePass(mgr);
         return 0;
     }
 
@@ -356,7 +384,8 @@ int mainPage(bool &admin, Library &lib, PasswordManager &mgr)
         }
         if(number=='6')
         {
-
+            addUser(mgr);
+            return 6;
         }
     }
     else

@@ -95,7 +95,7 @@ void Library::printSorted(SortMode mode,bool des)
         }
 }
 
-void Library::delBook(const char * heading,bool del_content)
+void Library::delBook(const char * heading)
 {
     int pos=-1;
     for(int i=0; i<book_amount; i++)

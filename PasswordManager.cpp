@@ -10,6 +10,7 @@ PasswordManager::~PasswordManager()
 {
     for(int i=0; i<size; i++)
         delete[] arr[i];
+    delete[] arr;
 }
 
 bool PasswordManager::load(ifstream & str)
@@ -22,10 +23,10 @@ bool PasswordManager::load(ifstream & str)
 
     arr = new char*[size];
 
-    char buff[20];
+    char buff[max_pass+5];
     for(int i=0; i<size; i++)
     {
-        str.getline(buff,20);
+        str.getline(buff,max_pass);
         if(!str) return false;
 
         arr[i] = new char[ strlen(buff) +1 ];
@@ -41,4 +42,23 @@ bool PasswordManager::find(const char* pass)
         if(strcmp( arr[i], pass ) == 0 )
             found = true;
     return found;
+}
+
+void PasswordManager::addPass(const char * pass)
+{
+    char ** temp = new char*[size+1];
+    for(int i=0; i<size; i++)
+        temp[i] = arr[i];
+    temp[size] = new char[ strlen(pass)+1 ];
+    strcpy( temp[size], pass );
+    delete[] arr;
+    arr = temp;
+    size++;
+}
+
+bool PasswordManager::save(ofstream &file)
+{
+    file<<size<<endl;
+    for(int i=0; i<size; i++)
+        file<<arr[i]<<endl;
 }

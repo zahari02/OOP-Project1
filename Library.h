@@ -18,7 +18,7 @@ public:
     bool findBook(Book&,const char*,SearchMode,bool ignore);
     void simplePrint();
     void printSorted(SortMode mode,bool des);
-    void delBook(const char * heading,bool del_content);
+    void delBook(const char * heading);
 
     void save(ofstream&);
 };

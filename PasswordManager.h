@@ -18,5 +18,6 @@ public:
 
     bool load(ifstream&);
     bool find(const char *);
+    void addPass(const char *);
     bool save(ofstream&);
 };

@@ -52,6 +52,7 @@ public:
     void print();
     void shortPrint();
     bool getFile(ifstream&);
+    bool delFile();
 
     void save(ofstream&);
 };

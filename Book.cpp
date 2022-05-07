@@ -305,6 +305,12 @@ bool Book::getFile(ifstream &file)
     return true;
 }
 
+bool Book::delFile()
+{
+    if( remove(directory) == 0 )
+        return true;
+    return false;
+}
 
 void Book::save(ofstream& file)
 {
