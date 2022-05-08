@@ -85,7 +85,7 @@ Book::Book(Book&& other)
     rating = other.rating;
     loaded = true;
 
-    other.author = other.heading = other.directory = other.description = other.heading = other.isbn = nullptr;
+    other.author = other.heading = other.directory = other.description = other.isbn = nullptr;
 }
 
 Book& Book::operator=(const Book& other)
@@ -136,7 +136,7 @@ Book& Book::operator=(Book&& other)
     rating = other.rating;
     loaded = true;
 
-    other.author = other.heading = other.directory = other.description = other.heading = other.isbn = nullptr;
+    other.author = other.heading = other.directory = other.description = other.isbn = nullptr;
 
     return *this;
 }

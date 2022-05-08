@@ -21,13 +21,13 @@ bool str_eq(const char*,const char*,bool ignore = false);
 
 class Book
 {
-public:
     char *author,*heading,*directory,*description,*isbn;
     int rating;
     bool loaded;
 
     void deleteDyn();
 
+public:
 
     Book();
     Book(const Book&);

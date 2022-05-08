@@ -74,14 +74,14 @@ void printSorted(Library &lib)
     cout<<"(3) Sort by rating\n";
 
     cin.getline(buff,3);
-    if(!checkCommand(buff,'1','4'))
+    if(!checkCommand(buff,'1','3'))
         return;
-
-    if(buff[0] == '4')
-    {
-        lib.simplePrint();
-        return;
-    }
+//   for debug
+//    if(buff[0] == '4')
+//    {
+//        lib.simplePrint();
+//        return;
+//    }
 
     mode = (SortMode)(buff[0] - '1');
 
