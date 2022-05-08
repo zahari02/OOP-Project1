@@ -3,7 +3,8 @@ tive, not only because it can be economically and scientifically rewarding, but
 also because it can be an aesthetic experience much like composing poetry or
 music. This book is the first volume of a multi-volume set of books that has been
 designed to train the reader in various skills that go into a programmer's craft.
-The following chapters are not meant to serve as an introduction to computer programming; the reader is supposed to have had some previous experience. The
+The following chapters are not meant to serve as an introduction to computer programming;
+the reader is supposed to have had some previous experience. The
 prerequisites are actually very simple, but a beginner requires time and practice
 in order to understand the concept of a digital computer. The reader should
 possess:
