@@ -7,7 +7,7 @@ const int max_author = 100;
 const int max_heading = 100;
 const int max_directory = 240;
 const int max_description = 10000;
-const int max_isbn = 15;
+const int max_isbn = 25;
 
 void write_bintext(ofstream&f,const char*);
 
