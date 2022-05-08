@@ -1,0 +1,50 @@
+4
+admin
+4
+War and Peace
+Leo Tolstoy
+It is regarded as one of Tolstoy's finest literary achievements and remains an internationally praised classic of world literature. The novel chronicles the French invasion of Russia and the impact of the Napoleonic era on Tsarist society through the stories of five Russian aristocratic families.
+books/sampleBook1.txt
+978-1400079988
+3
+4
+The Art of Computer Programming
+Donald Knuth
+The Art of Computer Programming (TAOCP) is a comprehensive monograph written by the computer scientist Donald Knuth presenting programming algorithms and their analysis
+books/sampleBook2.txt
+0-201-03801-3
+10
+4
+A Brief History of Time
+Stephen Hawking
+A Brief History of Time: From the Big Bang to Black Holes is a book on theoretical cosmology by English physicist Stephen Hawking.[1] It was first published in 1988. Hawking wrote the book for readers who had no prior knowledge of physics and people who are interested in learning something new about interesting subjects.
+books/sampleBook3.txt
+978-0-553-10953-5
+8
+4
+1984
+George Orwell
+Nineteen Eighty-Four (also stylised as 1984) is a dystopian social science fiction novel and cautionary tale written by English writer George Orwell. It was published on 8 June 1949 by Secker & Warburg as Orwell's ninth and final book completed in his lifetime. Thematically, it centres on the consequences of totalitarianism, mass surveillance and repressive regimentation of people and behaviours within society. Orwell, a democratic socialist, modelled the totalitarian government in the novel after Stalinist Russia and Nazi Germany. More broadly, the novel examines the role of truth and facts within politics and the ways in which they are manipulated.
+books/sampleBook4.txt
+978-0451524935
+7
+1
+2
+1
+2
+programming
+3
+1984
+2
+5
+War and Peace
+2
+1
+3
+2
+6
+admin2
+3
+The Art of Computer Programming
+1
+0

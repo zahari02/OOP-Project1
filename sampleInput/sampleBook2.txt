@@ -1,0 +1,25 @@
+THE PROCESS of preparing programs for a digital computer is especially attrac-
+tive, not only because it can be economically and scientifically rewarding, but
+also because it can be an aesthetic experience much like composing poetry or
+music. This book is the first volume of a multi-volume set of books that has been
+designed to train the reader in various skills that go into a programmer's craft.
+The following chapters are not meant to serve as an introduction to computer programming; the reader is supposed to have had some previous experience. The
+prerequisites are actually very simple, but a beginner requires time and practice
+in order to understand the concept of a digital computer. The reader should
+possess:
+a) Some idea of how a stored-program digital computer works; not necessarily
+the electronics, rather the manner in which instructions can be kept in the
+machine's memory and successively executed.
+b) An ability to put the solutions to problems into such explicit terms that a
+computer can "understand" them. (These machines have no common sense;
+they do exactly as they are told, no more and no less. This fact is the
+hardest concept to grasp when one first tries to use a computer.)
+c) Some knowledge of the most elementary computer techniques, such as loop-
+ing (performing a set of instructions repeatedly), the use of subroutines, and
+the use of indexed variables.
+d) A little knowledge of common computer jargon- "memory," "registers,"
+"bits," "floating point," "overflow," "software." Most words not defined in
+the text are given brief definitions in the index at the close of each volume.
+These four prerequisites can per haps be summed up into the single requirement
+that the reader should have already written and tested at least, say, four pro-
+grams for at least one computer.
