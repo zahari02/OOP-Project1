@@ -177,6 +177,8 @@ void printContent(Library& lib)
         {
             if(buff2 !='\n')
                 cout<<buff2;
+            else
+                cout<<' ';
             if(buff2 == '.' || buff2 == '?' || buff2 == '!')
                 wait();
         }
